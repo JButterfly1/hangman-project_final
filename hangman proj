@@ -1,0 +1,34 @@
+import random
+import scratch
+print("  Welcome to Hangman!  ")
+print("   Enjoy the Game! ")
+random_word = ["bee", "book", "orange", "program", " houses", "paper", "color", "", "camera", "age", "bags,"]
+tries = 5
+mystery_word = random.choice(random_word)
+display = []
+for i in range(len(mystery_word)):
+    display += '_'
+print(display)
+game_over = False
+while not game_over:
+    guessed_letter = input("Guess a letter: ")
+    for position in range(len(mystery_word)):
+        letter = mystery_word[position]
+        if letter == guessed_letter:
+            display[position] = guessed_letter
+    print(display)
+
+    if guessed_letter not in mystery_word:
+        tries -= 1
+        print(f"You have {tries} tries left") # so players could know how many more tries they have left
+    if tries == 0:
+        game_over = True
+        print("You Lose!")
+        print(f"The word was {mystery_word}")
+
+    if '_' not in display:
+        game_over = True
+        print("You Win!!")
+        print("Game over! Thank you for playing")
+    print(scratch.stickfigures[tries])
+
